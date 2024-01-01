@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+.Header{
+    background-color:#bb1c49;
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+.HeaderContainer{
+    width: 100%;
+    max-width: 1024px;
+}
+.HeaderLists{
+    margin-top:25px;
+    display: flex;
+}
+.Hlists{
+    margin-right:58px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    padding: 8px;
+    gap: 6px;
+    border-radius: 10px;
+}
+.Hlists.active{
+    border: 2px solid white;
+}
+.HeaderBelow{
+    color: white;
+}
+.HHeading{
+    font-weight: 200;
+}
+.Hpara{
+   font-weight: 100;
+   font-size: 15px;
+}

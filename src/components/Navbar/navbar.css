@@ -1,0 +1,33 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color:#bb1c49;
+    height: 50px;
+}
+.navcontainer{
+    width: 100%;
+    max-width: 1024px;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+}
+.navleft{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size:20px;
+}
+.navbutton{
+    padding: 11px 16px;
+    background-color: rgb(218, 55, 82);
+    border-radius: 4px;
+    color: white;
+    margin: 10px 10px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
