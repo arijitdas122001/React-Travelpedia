@@ -1,9 +1,9 @@
 import React from 'react'
-
 const Hotel = () => {
   return (
     <div>
-      Single Hotel
+      <Navbar/>
+      <Header/>
     </div>
   )
 }

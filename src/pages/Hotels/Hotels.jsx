@@ -1,9 +1,10 @@
 import React from 'react'
-
+import {Navbar,Header} from '../../components/index.js'
 const Hotels = () => {
   return (
     <div>
-      All Hotels
+     <Navbar/>
+     <Header type="list"/>
     </div>
   )
 }
