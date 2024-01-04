@@ -1,0 +1,118 @@
+.property{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* margin-top: 20px; */
+}
+.propertyContainer{
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+.propertyContainer>h1{
+    color:rgb(218, 55, 82)
+}
+.propertyAdress{
+   display: flex;
+    gap: 14px;
+}
+.propertyDistance{
+    margin-top: 5px;
+    font-weight: 600;
+    color: #048304;
+}
+.propertyImages{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.reservebtn{
+    position: absolute;
+    top: 20px;
+    right: 0;
+    padding: 10px 9px;
+    background-color: rgb(218, 55, 82);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.btndetails{
+    padding: 10px 9px;
+    background-color: rgb(218, 55, 82);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.imgWrapper{
+    width: 33%;
+    cursor: pointer;
+}
+.hotelimg{
+    width: 100%;
+    object-fit: cover;
+}
+.propertyDetails{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+.propertyDetailsTexts{
+    flex:3;
+}
+.propertyDetailsTexts>h2{
+    font-weight: 500;
+}
+.propertyDetailsPrice{
+    flex: 1;
+    background-color: pink;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.propertyDetailsPrice>h2{
+    font-weight: 500;
+}
+.slider{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    background-color: rgb(104 99 99 / 61%);
+    justify-content: center;
+}
+.sliderWrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sliderImg{
+    height: 80vh;
+    width: 80%;
+}
+.close{
+    position:absolute;
+    top: 20px;
+    right:20px;
+    cursor: pointer;
+    font-size: 40px;
+    color: rgb(244, 98, 98);
+}
+.arrow{
+    margin: 20px;
+    cursor: pointer;
+    font-size: 40px;
+    color: rgb(244, 98, 98);
+}

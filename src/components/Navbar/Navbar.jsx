@@ -9,7 +9,7 @@ const Navbar = () => {
                 <span className='navlogo'>WonderPedia</span>
             </div>
             <div className="navright">
-                <button className='navbutton'>Login</button>
+                <Button children="Log In"/>
                 <Button children="Register"/>
             </div>
         </div>

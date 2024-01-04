@@ -1,0 +1,52 @@
+.hotels{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 19px;
+    gap: 20px;
+}
+.hotelcontainer{
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    gap: 30px;
+}
+.hotelsinfo{
+flex:1;
+background-color: rgb(234 163 34);  
+display: flex;
+flex-direction: column;
+gap: 10px;
+border-radius: 14px;
+height: max-content;
+position: sticky;
+top: 10px;
+}
+.hotelsinfo>h1{
+    color: #d1082b;
+    font-size: 40px;
+    margin-left:12px;
+}
+.hotelsinfo>span{
+    margin-left:12px;
+}
+.hotelsLists{
+    flex: 2;
+}
+.destinaton{
+    width: 60%;
+    margin: 2px 4px;
+    padding: 10px 3px;
+    outline: none;
+    border: 2px solid bla
+}
+.dates{
+    margin: 2px 7px;
+    font-size: 20px;
+}
+.quantinfo{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin: 2px 7px;
+}

@@ -1,0 +1,68 @@
+    .MailBox{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(65,10,25,1) 24%, rgba(187,28,73,1) 79%);
+        width: 100%;
+        height: 290px;
+        flex-direction: column;
+    }
+    .mailTop{
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        flex: 1;
+        font-size: 19px;
+    }
+    .MailBottom{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
+    .minp{
+    padding: 9px 4px;
+    width: 200px;
+    margin: 7px 12px;
+    outline: none;
+    border: none;
+
+    }
+    .inputbtn{
+     padding: 9px 17px;
+    background-color: lightgreen;
+    border: 2px solid white;
+    cursor:pointer;
+    border-radius: 7px;
+    }
+.mailqueries{
+    display: flex;
+}
+.listbtn{
+    padding: 8px 25px;
+    /* font-weight: bold; */
+    font-size: 16px;
+    background-color: lightgreen;
+    border: 2px solid white;
+    cursor: pointer;
+    margin: 7px;
+    border-radius: 12px;
+}
+.mailqueries>li{
+    color: white;
+    margin: 4px 24px;
+    text-decoration: underline;
+    font-weight: bold;
+    list-style: none;
+    cursor: pointer;
+}
+hr{
+    width: 100%;
+    margin: 0;
+   color: black;
+}
