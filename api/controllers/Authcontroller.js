@@ -2,7 +2,6 @@ import bcrypt  from 'bcryptjs'
 import jwt from 'jsonwebtoken';
 import User from "../Models/User.js"
 import { createError } from '../utils/createError.js';
-import { json } from 'express';
 // SignUp
 export const Register=async(req,res,next)=>{
     try {

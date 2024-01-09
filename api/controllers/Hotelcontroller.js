@@ -35,9 +35,39 @@ export const getHotel=async(req,res,next)=>{
     }
 }
 export const getAllHotel=async(req,res,next)=>{
+    const {min,max,limit,...others}=req.query;
     try {
-        const allHotels=await Hotel.find();
-        res.status(200).json(allHotels);
+        const hotels = await Hotel.find({
+            ...others,
+            cheapestPrice:{$gt:min || 0,$lt:max || 10000},
+        }).limit(limit);
+          res.status(200).json(hotels);
+    } catch (error) {
+        return next(error);
+    }
+}
+export const countHotels=async(req,res,next)=>{
+    const allcities=req.query.cities.split(',');
+    try {
+        const countcities=await Promise.all(
+            allcities.map((ele)=>{
+                return Hotel.countDocuments({city:ele})
+            })
+        )
+        res.status(200).json(countcities);
+    } catch (error) {
+        return next(error);
+    }
+}
+export const countHotelcatagory=async(req,res,next)=>{ 
+    const allcatagories=req.query.cat.split(',');
+    try {
+        const coutnCatagory=await Promise.all(
+            allcatagories.map((ele)=>{
+                return Hotel.countDocuments({type:ele})
+            })
+        )
+        res.status(200).json(coutnCatagory);
     } catch (error) {
         return next(error);
     }

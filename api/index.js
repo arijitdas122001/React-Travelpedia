@@ -1,10 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
-import { auth,Hotels, user } from "./routes/allroutes.js";
+import { auth,Hotels, user,Rooms } from "./routes/allroutes.js";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import cors from 'cors'
 const app=express();
 dotenv.config();
+app.use(cors())
 const dbConntect=async()=>{
     try {
         await mongoose.connect(process.env.MONGO_URL);
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use('/api/auth',auth);
 app.use('/api/hotels',Hotels);
 app.use('/api/user',user);
+app.use('/api/rooms',Rooms);
 
 // err MiddleWire
 app.use((err,req,res,next)=>{
