@@ -3,9 +3,12 @@ import './Hotel.css'
 import { Navbar,Header, MailBox, Footer } from '../../components/index.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark, faLocation ,faCircleArrowLeft,faCircleArrowRight} from '@fortawesome/free-solid-svg-icons'
+import { useParams } from 'react-router-dom'
+import useFetch from '../../Hooks/useFetch.js'
 const Hotel = () => {
   const [index,setindex]=useState(0);
   const [openModal,setopenModal]=useState(false);
+  const obj=useParams();
   const handleModal=(i)=>{
     setopenModal(!openModal)
     setindex(i);
@@ -13,6 +16,7 @@ const Hotel = () => {
   const handelIncDec=(ins)=>{
     ins=="inc"?setindex(index===5?0:index+1):setindex(index===0?5:index-1);
   }
+  const {data,loading,err}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/getHotel/${obj.id}`)
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -60,11 +64,12 @@ const Hotel = () => {
             />
           </div>
         )}
+        {loading?"data is Loading" :<>
         <div className="propertyContainer">
-         <h1>Bluberry Apartments</h1>
+         <h1>{data.name}</h1>
          <div className="propertyAdress">
          <FontAwesomeIcon icon={faLocation}/>
-         <span>xxx city,yyy road,zzz colony,Uttar Pradesh</span>
+         <span>xxx city,yyy road,zzz colony,{data.city},Uttar Pradesh</span>
          </div>
          <div className="propertyDistance">
           <span>1 hour from Airport,20 min From Railway Station</span>
@@ -90,12 +95,13 @@ const Hotel = () => {
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores doloremque maxime ducimus, facilis atque nulla!
               </span>
               <h2>
-                <b>18000/-</b> (9 nights)
+                <b>{data.cheapestPrice}/-</b> (1 nights)
               </h2>
               <button className='btndetails'>Reserve or Book Now!</button>
             </div>
           </div>
         </div>
+        </>}
         </div>
         <MailBox/>
         <Footer/>

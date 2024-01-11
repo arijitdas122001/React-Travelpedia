@@ -1,0 +1,32 @@
+.regis{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(104 99 99 / 61%);
+}
+.regiswrapper{
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgb(237, 222, 222); */
+    gap: 20px;
+    border-radius: 45px;
+}
+.regisinp{
+    width: 100%;
+    padding: 6px 12px;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+}
+.subbtn{
+    top: 20px;
+    right: 0;
+    padding: 10px 9px;
+    background-color: rgb(218, 55, 82);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}

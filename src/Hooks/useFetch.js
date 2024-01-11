@@ -20,18 +20,18 @@ const useFetch = (url) => {
       // console.log(import.meta.env.PORT_NO)
     }, [url]);
   
-    // const reFetch = async () => {
-    //   setLoading(true);
-    //   try {
-    //     const res = await axios.get(url);
-    //     setData(res.data);
-    //   } catch (err) {
-    //     setError(err);
-    //   }
-    //   setLoading(false);
-    // };
+    const reFetch = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get(url);
+        setData(res.data);
+      } catch (err) {
+        setError(err);
+      }
+      setLoading(false);
+    };
   
-    return { data, loading, error};
+    return { data, loading, error,reFetch};
   };
   
   export default useFetch;

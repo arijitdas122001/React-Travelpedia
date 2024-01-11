@@ -13,6 +13,7 @@
     overflow: hidden;
     border-radius: 10px;
     flex: 1;
+    cursor: pointer;
 }
 .featuredImg{
     width: 100%;

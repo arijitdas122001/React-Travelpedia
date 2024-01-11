@@ -21,6 +21,11 @@
     font-weight: bold;
     font-size:20px;
 }
+.navright{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 .navbutton{
     padding: 11px 16px;
     background-color: black;
@@ -31,4 +36,19 @@
     border: none;
     font-weight: bold;
     cursor: pointer;
+}
+.btnnav{
+    padding: 11px 16px;
+    background-color: rgb(218, 55, 82);
+    border-radius: 4px;
+    color: white;
+    margin: 10px 10px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.userlogo>img{
+    height: 30px;
+    width: 26px;
 }

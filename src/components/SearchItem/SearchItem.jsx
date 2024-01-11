@@ -1,7 +1,11 @@
 import React from 'react'
 import './SearchItem.css'
-import Button from '../Button/Button'
-const SearchItem = () => {
+import { useNavigate } from 'react-router-dom'
+const SearchItem = ({item}) => {
+  const navigate=useNavigate();
+  const handlesearch=()=>{
+    navigate(`/hotels/${item._id}`)
+  }
   return (
     <div className="searchItem">
       <img
@@ -10,8 +14,8 @@ const SearchItem = () => {
         className="siImg"
       />
       <div className="siDesc">
-        <h1 className="siTitle">Bluberry Apartments</h1>
-        <span className="siDistance">500m from center</span>
+        <h1 className="siTitle">{item.name}</h1>
+        <span className="siDistance">{item.distance}m from center</span>
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">
           Studio Apartment with Air conditioning
@@ -30,9 +34,9 @@ const SearchItem = () => {
           <button>8.9</button>
         </div>
         <div className="siDetailTexts">
-          <span className="siPrice">2200</span>
+          <span className="siPrice">{item.cheapestPrice}/-</span>
           <span className="siTaxOp">Includes taxes and fees</span>
-          <Button children="See Availability"/>
+          <button onClick={handlesearch} className='itmbtn'>See Avilablity</button>
         </div>
       </div>
     </div>
