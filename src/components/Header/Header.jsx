@@ -101,9 +101,9 @@ const Header = ({type}) => {
             onClick={() => setopenCalender(!openCalender)}
           >
             <FontAwesomeIcon icon={faCalendar} />
-            <span>{`${format(dates[0].startDate, "mm/dd/yyyy")}  TO   ${format(
+            <span>{`${format(dates[0].startDate, "MM/dd/yyyy")}  TO   ${format(
               dates[0].endDate,
-              "mm/dd/yyy"
+              "MM /dd/yyy"
             )}`}</span>
             {openCalender && (
               <DateRange

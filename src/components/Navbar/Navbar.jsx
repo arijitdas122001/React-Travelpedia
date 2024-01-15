@@ -14,11 +14,14 @@ const Navbar = () => {
     const handleClick=(event)=>{
         navigate(`/${event}`)
     }
+    const handelNavigate=()=>{
+        navigate('/');
+    }
   return (
     <div className='navbar'>
         <div className="navcontainer">
             <div className="navleft">
-                <span className='navlogo'>WonderPedia</span>
+                <span className='navlogo' onClick={handelNavigate}>WonderPedia</span>
             </div>
             <div className="navright">
                 {userpresent?
