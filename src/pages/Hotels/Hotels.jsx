@@ -3,8 +3,10 @@ import {Navbar,Header,SearchItem, Button} from '../../components/index.js'
 import './Hotels.css'
 import { useLocation } from 'react-router-dom'
 import useFetch from '../../Hooks/useFetch.js'
+import { useSelector } from 'react-redux'
 const Hotels = () => {
   const location=useLocation();
+  const options=useSelector((state)=>state.searchR.options);
   const dest=location.state.destination;
   const [min,setMin]=useState(null);
   const [max,setMax]=useState(null);
@@ -32,15 +34,15 @@ const Hotels = () => {
           </div>
           <div className="quantinfo">
             <span>Adults</span>
-            <input type='number'/>
+            <input type='number' placeholder={options.Adults}/>
           </div>
           <div className="quantinfo">
             <span>Children</span>
-            <input type='number'/>
+            <input type='number' placeholder={options.children}/>
           </div>
           <div className="quantinfo">
             <span>Rooms</span>
-            <input type='number'/>
+            <input type='number' placeholder={options.Rooms}/>
           </div>
       <Button children="Search"/>
         </div>

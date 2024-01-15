@@ -16,6 +16,8 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import format from "date-fns/format";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { storeSearchValue } from "../../redux-store/reducers/searchreducer.js";
 const Header = ({type}) => {
   const [destination ,setdestination]=useState("");
   const [openCalender, setopenCalender] = useState(false);
@@ -25,7 +27,7 @@ const Header = ({type}) => {
     children: 0,
     Rooms: 0,
   });
-  const [date, setDate] = useState([
+  const [dates, setDates] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
@@ -42,7 +44,9 @@ const Header = ({type}) => {
     });
   };
   const navigate=useNavigate();
+  const dispatch=useDispatch();
   const handleSearch=()=>{
+    dispatch(storeSearchValue({dates,destination,stayOptions})) ;
     navigate('/hotels',{state:{destination}})
   }
   return (
@@ -97,16 +101,16 @@ const Header = ({type}) => {
             onClick={() => setopenCalender(!openCalender)}
           >
             <FontAwesomeIcon icon={faCalendar} />
-            <span>{`${format(date[0].startDate, "mm/dd/yyyy")}  TO   ${format(
-              date[0].endDate,
+            <span>{`${format(dates[0].startDate, "mm/dd/yyyy")}  TO   ${format(
+              dates[0].endDate,
               "mm/dd/yyy"
             )}`}</span>
             {openCalender && (
               <DateRange
                 editableDateInputs={true}
-                onChange={(item) => setDate([item.selection])}
+                onChange={(item) => setDates([item.selection])}
                 moveRangeOnFirstSelection={false}
-                ranges={date}
+                ranges={dates}
                 className="datepicker"
               />
             )}

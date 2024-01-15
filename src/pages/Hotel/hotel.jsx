@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark, faLocation ,faCircleArrowLeft,faCircleArrowRight} from '@fortawesome/free-solid-svg-icons'
 import { useParams } from 'react-router-dom'
 import useFetch from '../../Hooks/useFetch.js'
+import { useSelector } from 'react-redux'
 const Hotel = () => {
   const [index,setindex]=useState(0);
   const [openModal,setopenModal]=useState(false);
+  const dates=useSelector((state)=>state.searchR.dates);
   const obj=useParams();
   const handleModal=(i)=>{
     setopenModal(!openModal)
@@ -37,6 +39,14 @@ const Hotel = () => {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
     },
   ];
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+  function dayDifference(date1, date2) {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+    return diffDays;
+  }
+  const periodTime=dayDifference(dates[0].startDate,dates[0].endDate);
+  console.log(periodTime);;
   return (
     <div>
       <Navbar/>
@@ -90,12 +100,12 @@ const Hotel = () => {
               </p>
             </div>
             <div className="propertyDetailsPrice">
-              <h2>Perfect for a 9-night stay!</h2>
+              <h2>Perfect for a {periodTime }-night stay!</h2>
               <span>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores doloremque maxime ducimus, facilis atque nulla!
               </span>
               <h2>
-                <b>{data.cheapestPrice}/-</b> (1 nights)
+                <b>{data.cheapestPrice*periodTime}/-</b> ({periodTime} nights)
               </h2>
               <button className='btndetails'>Reserve or Book Now!</button>
             </div>
