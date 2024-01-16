@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Hotel.css'
-import { Navbar,Header, MailBox, Footer } from '../../components/index.js'
+import { Navbar,Header, MailBox, Footer,Reserve } from '../../components/index.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark, faLocation ,faCircleArrowLeft,faCircleArrowRight} from '@fortawesome/free-solid-svg-icons'
 import { useParams } from 'react-router-dom'
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 const Hotel = () => {
   const [index,setindex]=useState(0);
   const [openModal,setopenModal]=useState(false);
+  const [openBooking,setopenBooking]=useState(false);
   const dates=useSelector((state)=>state.searchR.dates);
   const obj=useParams();
   const handleModal=(i)=>{
@@ -46,12 +47,18 @@ const Hotel = () => {
     return diffDays;
   }
   const periodTime=dayDifference(dates[0].startDate,dates[0].endDate);
-  console.log(periodTime);;
+  // console.log(periodTime);
+  const handelopen=()=>{
+    setopenBooking(true);
+  }
   return (
     <div>
       <Navbar/>
       <Header type="list"/>
-      <div className="property">
+      <div className="property">\
+      {openBooking && (
+        <Reserve openModal={setopenBooking}/>
+      )}
       {openModal && (
           <div className="slider">
             <FontAwesomeIcon
@@ -107,7 +114,7 @@ const Hotel = () => {
               <h2>
                 <b>{data.cheapestPrice*periodTime}/-</b> ({periodTime} nights)
               </h2>
-              <button className='btndetails'>Reserve or Book Now!</button>
+              <button className='btndetails' onClick={handelopen}>Reserve or Book Now!</button>
             </div>
           </div>
         </div>
