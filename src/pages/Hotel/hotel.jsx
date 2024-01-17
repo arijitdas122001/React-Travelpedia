@@ -55,10 +55,7 @@ const Hotel = () => {
     <div>
       <Navbar/>
       <Header type="list"/>
-      <div className="property">\
-      {openBooking && (
-        <Reserve openModal={setopenBooking}/>
-      )}
+      <div className="property">
       {openModal && (
           <div className="slider">
             <FontAwesomeIcon
@@ -122,6 +119,9 @@ const Hotel = () => {
         </div>
         <MailBox/>
         <Footer/>
+        {openBooking && (
+        <Reserve openModal={setopenBooking} id={obj.id}/>
+      )}
       </div>
   )
 }

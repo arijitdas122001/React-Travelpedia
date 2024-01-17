@@ -83,6 +83,6 @@ export const getRooomInfo=async(req,res,next)=>{
         )
         res.status(200).send(listrooms);
     } catch (error) {
-        
+        return next(error);
     }
 }
