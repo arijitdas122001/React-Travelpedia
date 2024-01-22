@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logOut } from '../../redux-store/reducers/authreducer.js'
 import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
-    const userpresent=useSelector((state)=>state.auth.status);
+    const userpresent=useSelector((state)=>state.auth.user);
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const handleLogout=()=>{

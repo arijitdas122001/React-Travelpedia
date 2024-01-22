@@ -18,6 +18,7 @@ const Login = () => {
       password:password
     });
     dispatch(login(res.data.details.userName));
+    localStorage.setItem("user",JSON.stringify(res.data.details.userName))
     navigate('/');
   }
   catch(error){

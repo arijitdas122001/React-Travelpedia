@@ -1,6 +1,6 @@
 .btn{
     padding: 11px 16px;
-    background-color: rgb(218, 55, 82);
+    background-color:black;
     border-radius: 4px;
     color: white;
     margin: 10px 10px;
@@ -8,4 +8,7 @@
     border: none;
     font-weight: bold;
     cursor: pointer;
+}
+.btn:hover{
+    background-color:rgb(194, 66, 87);
 }

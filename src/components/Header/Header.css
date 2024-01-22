@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 .Header{
-    background: rgb(2,0,36);
-background: rgba(198,45,112,1);
+    background-color: #a73147;
     display: flex;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
@@ -64,7 +63,9 @@ background: rgba(198,45,112,1);
 }
 .searchbtn{
     padding: 11px 16px;
-    background-color: rgb(218, 55, 82);
+    /* background-color: rgb(218, 55, 82);
+     */
+     background-color: black;
     border-radius: 4px;
     color: white;
     margin: 10px 10px;
