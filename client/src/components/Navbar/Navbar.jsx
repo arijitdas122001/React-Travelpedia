@@ -9,6 +9,7 @@ const Navbar = () => {
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const handleLogout=()=>{
+        localStorage.setItem('user',null);
         dispatch(logOut());
     }
     const handleClick=(event)=>{

@@ -21,13 +21,15 @@ const Reserve = ({openModal,id}) => {
   }
   // console.log(selectedRooms);
   const dates=useSelector((state)=>state.searchR.dates);
+  const user=JSON.parse(localStorage.getItem('user'));
   const DateRange=(startdate,enddate)=>{
-    const start=new Date(startdate.getTime());
-    const end=new Date(enddate.getTime());
+    const start=new Date(startdate);
+    const end=new Date(enddate);
+    const date=new Date(start.getTime());
     const datesList=[];
-    while(start<=end){
-      datesList.push(new Date(start).getTime());
-      start.setDate(start.getDate()+1);
+    while(date<=end){
+      datesList.push(new Date(date).getTime());
+      date.setDate(date.getDate()+1);
     }
     return datesList;
   }
@@ -44,7 +46,7 @@ const Reserve = ({openModal,id}) => {
         })
       )
       openModal(false);
-      navigate('/');
+      user?navigate('/'):navigate('/login');
     } catch (error) {
       seterror(true);
     }
@@ -99,7 +101,9 @@ const Reserve = ({openModal,id}) => {
           </div>
           </div>
         ))}
-      <Button children="Reserve Now" onClick={handelReserve}/>
+      {user?<Button children="Reserve Now" onClick={handelReserve}/>:
+      <Button children="You must log in first" onClick={handelReserve}/>
+      }
       </div>
     </div>
   )
