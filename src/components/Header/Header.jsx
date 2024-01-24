@@ -46,7 +46,8 @@ const Header = ({type}) => {
   const navigate=useNavigate();
   const dispatch=useDispatch();
   const handleSearch=()=>{
-    dispatch(storeSearchValue({dates,destination,stayOptions})) ;
+    dispatch(storeSearchValue({dates,destination,stayOptions}));
+    localStorage.setItem('dates',JSON.stringify(dates));
     navigate('/hotels',{state:{destination}})
   }
   return (

@@ -10,7 +10,9 @@ const Hotel = () => {
   const [index,setindex]=useState(0);
   const [openModal,setopenModal]=useState(false);
   const [openBooking,setopenBooking]=useState(false);
-  const dates=useSelector((state)=>state.searchR.dates);
+  // const dates=useSelector((state)=>state.searchR.dates);
+  const dates=JSON.parse(localStorage.getItem('dates'));
+  console.log(dates);
   const obj=useParams();
   const handleModal=(i)=>{
     setopenModal(!openModal)
@@ -42,7 +44,7 @@ const Hotel = () => {
   ];
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
-    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const timeDiff = Math.abs(new Date(date2).getTime() - new Date(date1).getTime());
     const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
     return diffDays;
   }

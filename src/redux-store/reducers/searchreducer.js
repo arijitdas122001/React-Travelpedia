@@ -1,10 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    dates:[{
-        startDate: new Date(),
-        endDate: new Date(),
-    }],
+    dates:JSON.parse(localStorage.getItem('dates'))|| [],
     destination:"default",
     options:{},
 };
