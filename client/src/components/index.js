@@ -18,5 +18,5 @@ export{
     MailBox,
     Footer,
     SearchItem,
-    Reserve
+    Reserve,
 };

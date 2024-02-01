@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
-import { Button } from "../index.js";
+import { Button} from "../index.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,
@@ -16,12 +16,13 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import format from "date-fns/format";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { storeSearchValue } from "../../redux-store/reducers/searchreducer.js";
 const Header = ({type}) => {
-  const [destination ,setdestination]=useState("");
   const [openCalender, setopenCalender] = useState(false);
   const [openOptons, setopenOptions] = useState(false);
+  const [openModal, setopenModal] = useState(false);
+  const [dest,setdest]=useState("");
   const [stayOptions, setStayOptions] = useState({
     Adults: 0,
     children: 0,
@@ -43,12 +44,20 @@ const Header = ({type}) => {
       };
     });
   };
+  const handlemodal=()=>{
+    setopenModal(!openModal)
+  }
   const navigate=useNavigate();
   const dispatch=useDispatch();
+  const searchr=useSelector((state)=>state.searchR);
   const handleSearch=()=>{
-    dispatch(storeSearchValue({dates,destination,stayOptions}));
+    dispatch(storeSearchValue({dates,destination:dest,stayOptions}));
     localStorage.setItem('dates',JSON.stringify(dates));
-    navigate('/hotels',{state:{destination}})
+    localStorage.setItem('location',JSON.stringify(dest));
+    navigate('/hotels');
+  }
+  const handelNavigate=()=>{
+    navigate('/login')
   }
   return (
     <div className="Header">
@@ -85,7 +94,7 @@ const Header = ({type}) => {
             Get Reward points for your Travel and Travel again.30% Discount On
             your First Trip and much more is waiting ...
           </p>
-          <Button children="SignIn/Register" />
+          <Button children="SignIn/Register" onClick={handelNavigate} />
         </div>
         <div className="headerSearch">
           <div className="searchitem">
@@ -94,7 +103,7 @@ const Header = ({type}) => {
               type="text"
               className="Hsinput"
               placeholder="Search Your Destination"
-              onChange={(e)=>setdestination(e.target.value)}
+              onChange={(e)=>setdest(e.target.value)}
             />
           </div>
           <div

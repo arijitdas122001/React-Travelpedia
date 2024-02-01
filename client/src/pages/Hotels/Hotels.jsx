@@ -1,29 +1,75 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Navbar,Header,SearchItem, Button} from '../../components/index.js'
 import './Hotels.css'
-import { useLocation } from 'react-router-dom'
 import useFetch from '../../Hooks/useFetch.js'
 import { useSelector } from 'react-redux'
 const Hotels = () => {
-  const location=useLocation();
+  // const location=useLocation();
   const options=useSelector((state)=>state.searchR.options);
-  const dest=location.state.destination;
+  const [openfilter,setfilter]=useState(false);
+  const [category,setCat]=useState("");
+  const [types,setTypes]=useState("");
+  // const dest=location.state.destination;
+  const dest=JSON.parse(localStorage.getItem('location'));
+  const [destination,setdestination]=useState(dest);
   const [min,setMin]=useState(null);
   const [max,setMax]=useState(null);
-  const {data,loading,err,reFetch}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/allhotels?city=${dest}&min=${min || 0}&max=${max || 10000}`);
+  const catstr=category==="" || category===undefined?"":`type=${category}`;
+  const {data,loading,err,reFetch}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/allhotels?city=${destination}&min=${min || 0}&max=${max || 10000}&`+`${catstr}`);
+  const handelFilter=()=>{
+    setfilter(!openfilter);
+  }
   return (
     <div>
      <Navbar/>
      <Header type="list"/>
      <div className="hotels">
+     <div className='filtercont'>
+     <div onClick={handelFilter} className="hfilter">
+            Filters
+          </div>
+      {openfilter && 
+          <div className="filters">
+          <div className="filtercont">
+            <select className="filtertypes" onChange={(e)=>setCat(e.target.value)}>
+              <option value="">{category===""?"Category":category}</option>
+              <option value="Apartments">Apartments</option>
+              <option value="hotel">Hotels</option>
+              <option value="resorts">Resorts</option>
+            </select>
+            <select className="filtertypes"  onChange={(e)=>setTypes(e.target.value)}>
+            <option value="">{types===""?"Types":types}</option>
+              <option value="montains">Mountains</option>
+              <option value="beach">Beach</option>
+              <option value="religious">Religious</option>
+            </select>
+          </div>
+        </div>}
+      {openfilter && 
+          <div className="filters">
+          <div className="filtercont">
+            <select className="filtertypes" onChange={(e)=>setCat(e.target.value)}>
+              <option value="" disabled>{category===""?"Category":category}</option>
+              <option value="Apartments">Apartments</option>
+              <option value="hotel">Hotels</option>
+              <option value="resorts">Resorts</option>
+            </select>
+            <select className="filtertypes"  onChange={(e)=>setTypes(e.target.value)}>
+            <option value="">{types===""?"Types":types}</option>
+              <option value="montains">Mountains</option>
+              <option value="beach">Beach</option>
+              <option value="religious">Religious</option>
+            </select>
+          </div>
+        </div>}</div>
       <div className="hotelcontainer">
         <div className="hotelsinfo">
-          <h1>Search</h1>
+          <h1>Search</h1> 
           <span>Current Location</span>
           <input className="destinaton" type='text' placeholder='From'/>
-          <span>Destination</span>
-          <input className="destinaton" type='text' placeholder={dest} />
-          <div className="dates">Current Location To {dest}</div>
+          <span>Destination</span>              
+          <input className="destinaton" type='text' placeholder={dest} onChange={(e)=>setdestination(e.target.value)} />
+          <div className="dates">Current Location To {destination}</div>
           <div className="quantinfo">
             <span>Maximum Price</span>
             <input type='number' onChange={(e)=>setMax(e.target.value)} placeholder='2000'/>

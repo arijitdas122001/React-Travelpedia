@@ -4,6 +4,7 @@
     justify-content: center;
     margin-top: 19px;
     gap: 20px;
+    flex-direction: column;
 }
 .hotelcontainer{
     width: 100%;
@@ -52,4 +53,48 @@ top: 10px;
 }
 .quantinfo>input{
     width: 60px;
+}
+.filtercont{
+    width: 100%;
+    max-width: 1024px;
+    /* background-color: red; */
+    margin-top: 0px;
+    display: flex;
+}
+.hfilter{
+    order: 2px solid;
+    width: 48px;
+    padding: 7px 7px;
+    border-radius: 12px;
+    margin-top: 12px;
+    font-weight: bolder;
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: rgb(194, 66, 87);
+}
+.hfilter:hover{
+    background-color: #226953
+}
+.filters{
+    position: absolute;
+    left: 100px;
+    bottom: 1px;
+    transition: width 2s;
+}
+.filtercont{
+    display: flex;
+    gap: 20px;
+    position: relative; 
+}   
+.filtertypes{
+    padding: 6px 6px;
+    color: black;
+    font-weight: bold;   
+    border-radius: 11px;
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
 }
