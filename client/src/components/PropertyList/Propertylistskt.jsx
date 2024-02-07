@@ -1,6 +1,6 @@
 import React from 'react'
 import './Propertylistskt.css'
-const propertylistskt = () => {
+const Propertylistskt = () => {
   return (
     <div className="pListItemskt">
         <div className='pListImgskt'></div>
@@ -12,4 +12,4 @@ const propertylistskt = () => {
   )
 }
 
-export default propertylistskt;
+export default Propertylistskt;
