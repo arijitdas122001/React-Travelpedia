@@ -1,7 +1,7 @@
 import React from 'react'
 import './PropertyList.css'
 import useFetch from '../../Hooks/useFetch'
-import Propertylistskt from './propertylistskt'
+import Propertylistskt from './Propertylistskt.jsx'
 const PropertyList = () => {
   const {data,loading,err}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/getHotelCatagory?cat=hotel,Apartments`)
   return (
