@@ -1,0 +1,25 @@
+.featuredItemskt{
+        background-color: #cac4c4;
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+        border-radius: 10px;
+        flex: 1;
+        cursor: pointer;
+        width: 320px;
+        animation: skeleton 1s ease infinite alternate;
+}
+@keyframes skeleton {
+    to{
+        opacity: 0.5;
+    }
+}
+.featuredTitlesskt{
+    background-color: #817676;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 148px;
+    height: 56px;
+}

@@ -8,14 +8,15 @@ const Hotels = () => {
   const options=useSelector((state)=>state.searchR.options);
   const [openfilter,setfilter]=useState(false);
   const [category,setCat]=useState("");
-  const [types,setTypes]=useState("");
+  const [pRange,setpRange]=useState("");
   // const dest=location.state.destination;
   const dest=JSON.parse(localStorage.getItem('location'));
   const [destination,setdestination]=useState(dest);
   const [min,setMin]=useState(null);
   const [max,setMax]=useState(null);
   const catstr=category==="" || category===undefined?"":`type=${category}`;
-  const {data,loading,err,reFetch}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/allhotels?city=${destination}&min=${min || 0}&max=${max || 10000}&`+`${catstr}`);
+  const prangestr=pRange==="" || pRange===undefined?"":`sval=${pRange==="Low-To-High"?"asc":"desc"}`;
+  const {data,loading,err,reFetch}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/allhotels?city=${destination}&min=${min || 0}&max=${max || 10000}&`+`${catstr}&`+`${prangestr}`);
   const handelFilter=()=>{
     setfilter(!openfilter);
   }
@@ -32,33 +33,15 @@ const Hotels = () => {
           <div className="filters">
           <div className="filtercont">
             <select className="filtertypes" onChange={(e)=>setCat(e.target.value)}>
-              <option value="">{category===""?"Category":category}</option>
-              <option value="Apartments">Apartments</option>
-              <option value="hotel">Hotels</option>
-              <option value="resorts">Resorts</option>
-            </select>
-            <select className="filtertypes"  onChange={(e)=>setTypes(e.target.value)}>
-            <option value="">{types===""?"Types":types}</option>
-              <option value="montains">Mountains</option>
-              <option value="beach">Beach</option>
-              <option value="religious">Religious</option>
-            </select>
-          </div>
-        </div>}
-      {openfilter && 
-          <div className="filters">
-          <div className="filtercont">
-            <select className="filtertypes" onChange={(e)=>setCat(e.target.value)}>
               <option value="" disabled>{category===""?"Category":category}</option>
               <option value="Apartments">Apartments</option>
               <option value="hotel">Hotels</option>
               <option value="resorts">Resorts</option>
             </select>
-            <select className="filtertypes"  onChange={(e)=>setTypes(e.target.value)}>
-            <option value="">{types===""?"Types":types}</option>
-              <option value="montains">Mountains</option>
-              <option value="beach">Beach</option>
-              <option value="religious">Religious</option>
+            <select className="filtertypes"  onChange={(e)=>setpRange(e.target.value)}>
+            <option value="" disabled>{pRange===""?"Price":pRange}</option>
+              <option value="Low-To-High">Low-To-High</option>
+              <option value="High-To-Low">High-To-Low</option>
             </select>
           </div>
         </div>}</div>

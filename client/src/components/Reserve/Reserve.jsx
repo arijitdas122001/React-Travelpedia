@@ -35,7 +35,7 @@ const Reserve = ({openModal,id}) => {
   }
   const alldates=DateRange(dates[0].startDate,dates[0].endDate);
   const handelReserve=async()=>{
-    console.log("clicking");  
+    // console.log("clicking");  
     try {
       await Promise.all(
         selectedRooms.map((roomId)=>{
@@ -45,8 +45,7 @@ const Reserve = ({openModal,id}) => {
           return res.data;
         })
       )
-      openModal(false);
-      user?navigate('/'):navigate('/login');
+      navigate('/login');
     } catch (error) {
       seterror(true);
     }
@@ -101,7 +100,7 @@ const Reserve = ({openModal,id}) => {
           </div>
           </div>
         ))}
-      {user?<Button children="Reserve Now" onClick={handelReserve}/>:
+      {user?<Button children="Reserve Now"/>:
       <Button children="You must log in first" onClick={handelReserve}/>
       }
       </div>

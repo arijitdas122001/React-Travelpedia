@@ -102,7 +102,7 @@ const Header = ({type}) => {
             <input
               type="text"
               className="Hsinput"
-              placeholder="Search Your Destination"
+              placeholder="(ayodha,bhubaneswar,uttarakhand)"
               onChange={(e)=>setdest(e.target.value)}
             />
           </div>

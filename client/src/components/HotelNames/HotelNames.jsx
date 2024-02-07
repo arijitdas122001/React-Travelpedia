@@ -1,11 +1,12 @@
 import React from 'react'
 import './HotelNames.css'
 import useFetch from '../../Hooks/useFetch'
+import HotelNskt from './HotelNskt'
 const HotelNames = () => {  
   const {data,loading,err}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/allhotels?featured=true&limit=4`)
   return (
     <div className="fp">
-    {loading?"loading page please wait":
+    {loading?<>{Array(4).fill(<HotelNskt/>)}</>:
      <>
       {data.map((ele,i)=>(
       <div className="fpItem" key={i}>

@@ -1,0 +1,42 @@
+.fpItemskt{
+    flex: 1;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fpImgskt{
+    width: 200px;
+    height: 159px;
+    border-radius: 9px;
+    background-color: #cac4c4;
+  }
+  
+  .fpNameskt{
+    color: transparent;
+    font-weight: bold;
+    background-color: #cac4c4;
+  }
+  
+  .fpCityskt{
+    color: transparent;
+    background-color: #cac4c4;
+  }
+  
+  .fpPriceskt{
+    color: transparent;
+    background-color: #cac4c4;
+  }
+  
+  .fpRatingskt>button{
+    background-color: #cac4c4;
+    color: transparent;
+    border: none;
+    padding: 3px;
+    margin-right: 10px;
+  }
+  
+  .fpRatingskt>span{
+    color: transparent;
+    background-color: #cac4c4;
+  }

@@ -1,11 +1,12 @@
 import React from 'react'
 import './PropertyList.css'
 import useFetch from '../../Hooks/useFetch'
+import Propertylistskt from './propertylistskt'
 const PropertyList = () => {
   const {data,loading,err}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/getHotelCatagory?cat=hotel,Apartments`)
   return (
     <div className="pList">
-      {loading?"Data is loading please wait":
+      {loading?<>{Array(5).fill(<Propertylistskt/>)}</>:
       <>
     <div className="pListItem">
       <img
@@ -61,7 +62,8 @@ const PropertyList = () => {
         <h1>Cabins</h1>
         <h2>2331 hotels</h2>
       </div>
-    </div></>}
+  </div>
+    </>}
   </div>
   )
 }

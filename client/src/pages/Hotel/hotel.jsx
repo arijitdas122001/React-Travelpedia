@@ -51,7 +51,7 @@ const Hotel = () => {
   const periodTime=dayDifference(dates[0].startDate,dates[0].endDate);
   // console.log(periodTime);
   const handelopen=()=>{
-    setopenBooking(true);
+    setopenBooking(!openBooking);
   }
   return (
     <div>
