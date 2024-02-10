@@ -31,7 +31,7 @@ const SearchItem = ({item}) => {
       <div className="siDetails">
         <div className="siRating">
           <span>Excellent</span>
-          <button>8.9</button>
+          <span className='span-rating'>8.9</span>
         </div>
         <div className="siDetailTexts">
           <span className="siPrice">{item.cheapestPrice}/-</span>

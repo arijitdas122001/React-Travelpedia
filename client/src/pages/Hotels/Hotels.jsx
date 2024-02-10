@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
+import { ColorRing } from 'react-loader-spinner'
 import {Navbar,Header,SearchItem, Button} from '../../components/index.js'
 import './Hotels.css'
 import useFetch from '../../Hooks/useFetch.js'
 import { useSelector } from 'react-redux'
+import Searchitemskt from '../../components/SearchItem/Searchitemskt.jsx'
 const Hotels = () => {
   // const location=useLocation();
   const options=useSelector((state)=>state.searchR.options);
   const [openfilter,setfilter]=useState(false);
   const [category,setCat]=useState("");
-  const [pRange,setpRange]=useState("");
+  const [pRange,setpRange]=useState("Low-To-High");
   // const dest=location.state.destination;
   const dest=JSON.parse(localStorage.getItem('location'));
   const [destination,setdestination]=useState(dest);
@@ -76,8 +78,17 @@ const Hotels = () => {
       <Button children="Search"/>
         </div>
         <div className="hotelsLists">
-          {loading?"data is loading":<>
+          {loading?<div  className="loadingcont"><ColorRing
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="color-ring-loading"
+  wrapperStyle={{}}
+  wrapperClass="color-ring-wrapper"
+  colors={[]}
+  /></div>:<>
           {data.map((ele,i)=>(
+            loading?<Searchitemskt key={i}/>:
             <SearchItem item={ele} key={i}/>
           ))}
           </>}

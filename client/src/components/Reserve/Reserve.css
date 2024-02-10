@@ -51,3 +51,8 @@
 .rdesc{
     font-size: 15px;
 }
+.loadingcont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
