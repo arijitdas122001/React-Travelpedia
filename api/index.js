@@ -19,7 +19,7 @@ app.listen(8080,()=>{
   dbConntect();
   console.log("Backend Started")
 })
-app.use('/',()=>{
+app.get('/',(req,res)=>{
   res.send("hello")
 })
 app.use(cookieParser())
