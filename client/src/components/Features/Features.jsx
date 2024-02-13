@@ -8,7 +8,7 @@ const Features = () => {
    return (
     <div>
      <div className="featured">
-      {loading?<>{Array(3).fill(<Featureskt/>)}</>:
+      {loading?<>{Array(3).map((i)=>(<Featureskt key={i}/>))}</>:
       <>
        <div className="featuredItem">
        <img 

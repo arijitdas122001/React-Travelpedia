@@ -1,7 +1,7 @@
 import { createError } from "./createError.js";
 import jwt  from "jsonwebtoken";
 export const verifyToken=(req,res,next)=>{
-        const token=req.cookies.access_Token;
+        const token=req.cookies.access_token;
         if(!token){
             return next(createError(401,"Your Are Not Authenticated"));
         }

@@ -1,5 +1,4 @@
 import React, {useState } from 'react'
-import { ColorRing } from 'react-loader-spinner'
 import {Navbar,Header,SearchItem, Button} from '../../components/index.js'
 import './Hotels.css'
 import useFetch from '../../Hooks/useFetch.js'
@@ -78,15 +77,7 @@ const Hotels = () => {
       <Button children="Search"/>
         </div>
         <div className="hotelsLists">
-          {loading?<div  className="loadingcont"><ColorRing
-  visible={true}
-  height="80"
-  width="80"
-  ariaLabel="color-ring-loading"
-  wrapperStyle={{}}
-  wrapperClass="color-ring-wrapper"
-  colors={[]}
-  /></div>:<>
+          {loading?<>{Array(5).map((i)=>(<Searchitemskt key={i}/>))}</>:<>
           {data.map((ele,i)=>(
             loading?<Searchitemskt key={i}/>:
             <SearchItem item={ele} key={i}/>

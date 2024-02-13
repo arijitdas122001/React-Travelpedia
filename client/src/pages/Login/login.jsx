@@ -16,7 +16,7 @@ const Login = () => {
     const res=await axios.post(`${import.meta.env.VITE_PORT_NO}/auth/login`,{
       userName:username,
       password:password
-    });
+    },{withCredentials:true});
     dispatch(login(res.data.details.userName));
     localStorage.setItem("user",JSON.stringify(res.data.details.userName))
     navigate('/');

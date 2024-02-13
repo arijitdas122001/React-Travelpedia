@@ -3,7 +3,7 @@ import authreducer from "./reducers/authreducer";
 import searchreducer from "./reducers/searchreducer";
 const store=configureStore({
     reducer:{
-        auth:authreducer,
+        authR:authreducer,
         searchR:searchreducer,
     },
     middleware:getDefaultMiddleware =>

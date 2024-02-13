@@ -10,23 +10,27 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Reserve = ({ openModal, id }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
+  const [roomCount,SetroomCount]=useState(0);
   const [error, seterror] = useState(false);
+  const [TotalPrice,setTotalPrice]=useState(0);
   const navigate = useNavigate();
   const { data, loading, err } = useFetch(
     `${import.meta.env.VITE_PORT_NO}/hotels/getHotelrooms/${id}`
   );
   // console.log(data);
-  const handelChange = (e) => {
+  const handelChange = (e,price) => {
     const isChecked = e.target.checked;
     const value = e.target.value;
     // if the value is checked the we have to push in the array if the box is not selected then pop from the array
+    setTotalPrice(isChecked && TotalPrice+price);
+    SetroomCount(isChecked && roomCount+1);
     setSelectedRooms(
       isChecked
         ? [...selectedRooms, value]
         : selectedRooms.filter((item) => item !== value)
     );
   };
-  // console.log(selectedRooms);
+  console.log(TotalPrice);
   const dates = useSelector((state) => state.searchR.dates);
   const user = JSON.parse(localStorage.getItem("user"));
   const DateRange = (startdate, enddate) => {
@@ -41,7 +45,8 @@ const Reserve = ({ openModal, id }) => {
     return datesList;
   };
   const alldates = DateRange(dates[0].startDate, dates[0].endDate);
-  const handelReserve = async () => {
+  const noOfNights=alldates.length
+  const handelReserve = async (navdir) => {
     // console.log("clicking");
     try {
       await Promise.all(
@@ -55,7 +60,7 @@ const Reserve = ({ openModal, id }) => {
           return res.data;
         })
       );
-      navigate("/login");
+      navdir==="re"?navigate('/cart',{state:{id,TotalPrice,roomCount,noOfNights}}):navigate('/login')
     } catch (error) {
       seterror(true);
     }
@@ -110,10 +115,10 @@ const Reserve = ({ openModal, id }) => {
                       <div className="rooms" key={i}>
                         <label>{item.number}</label>
                         <input
-                          type="checkbox"
+                          type="checkbox" 
                           value={item._id}
                           disabled={!isAvailable(item.unavailableDates)}
-                          onChange={handelChange}
+                          onChange={(e)=>handelChange(e,ele.price)}
                         />
                       </div>
                     ))}
@@ -125,9 +130,9 @@ const Reserve = ({ openModal, id }) => {
           </>
         }
         {user ? (
-          <Button children="Reserve Now" />
+          <Button children="Reserve Now" onClick={()=>handelReserve('re')}/>
         ) : (
-          <Button children="You must log in first" onClick={handelReserve} />
+          <Button children="You must log in first" onClick={()=>handelReserve('notre')} />
         )}
       </div>
     </div>

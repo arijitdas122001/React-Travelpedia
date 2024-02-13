@@ -2,11 +2,12 @@ import React from 'react'
 import './HotelNames.css'
 import useFetch from '../../Hooks/useFetch'
 import HotelNskt from './HotelNskt'
+import { useId } from 'react'
 const HotelNames = () => {  
   const {data,loading,err}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/allhotels?featured=true&limit=4`)
   return (
     <div className="fp">
-    {loading?<>{Array(4).fill(<HotelNskt/>)}</>:
+    {loading?<>{Array(3).map((i)=>(<HotelNskt key={i}/>))}</>:
      <>
       {data.map((ele,i)=>(
       <div className="fpItem" key={i}>

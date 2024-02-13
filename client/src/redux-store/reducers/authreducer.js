@@ -2,15 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
     status:false,
-    user:JSON.parse(localStorage.getItem('user')) || null,
+    user:JSON.parse(localStorage.getItem('user')) || null
 };
  const authSlice=createSlice({
     name:"auth",
     initialState,
     reducers:{
         login:(state,action)=>{
-            state.status=true,
-            state.user=action.payload
+            state.status=true;
+            state.user=action.payload;
         },
         logOut:(state,action)=>{
             state.status=false,

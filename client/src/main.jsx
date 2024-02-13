@@ -10,6 +10,7 @@ import Register from './pages/Register/register.jsx'
 import Login from './pages/Login/login.jsx'
 import { Provider } from 'react-redux'
 import store from './redux-store/store.js'
+import Cart from './pages/Cart/Cart.jsx'
 const router=createBrowserRouter([
   {
     path:"/",
@@ -36,6 +37,10 @@ const router=createBrowserRouter([
   {
     path:"/register",
     element:<Register/>
+  },
+  {
+    path:"/cart",
+    element:<Cart/>
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

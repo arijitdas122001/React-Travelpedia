@@ -25,7 +25,9 @@ const Register = () => {
       password:password
     });
     // console.log(res.data);
-    dispatch(login(res.data.userName));
+    dispatch(login({userName:res.data.userName,email:res.data.email}));
+    localStorage.setItem("user",JSON.stringify(res.data.userName));
+    localStorage.setItem("email",JSON.stringify(res.data.email));
     navigate('/');
   }catch(error){
     seterr(error);
