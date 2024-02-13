@@ -29,9 +29,7 @@ export const LogIn=async(req,res,next)=>{
         const token = jwt.sign({id:qUser._id,isAdmin:qUser.isAdmin}, process.env.SECRET_KEY);
         const{password,isAdmin,...others}=qUser._doc; 
         res.
-        cookie("access_token",token,{httpOnly: true,
-        path: "/",
-        maxAge: 30*24*60*60*1000})
+        cookie("access_token",token,{httpOnly: true,domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.vercel.com' })
         .status(200).json({details:{...others},isAdmin});
     } catch (error) {
         next(error);
