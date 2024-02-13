@@ -19,6 +19,9 @@ app.listen(8080,()=>{
   dbConntect();
   console.log("Backend Started")
 })
+app.use('/',()=>{
+  res.send("hello")
+})
 app.use(cookieParser())
 app.use(express.json());
 app.use('/api/auth',auth);
