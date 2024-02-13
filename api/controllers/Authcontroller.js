@@ -29,7 +29,7 @@ export const LogIn=async(req,res,next)=>{
         const token = jwt.sign({id:qUser._id,isAdmin:qUser.isAdmin}, process.env.SECRET_KEY);
         const{password,isAdmin,...others}=qUser._doc; 
         res.
-        cookie("access_token",token,{httpOnly:false})
+        cookie("access_token",token)
         .status(200).json({details:{...others},isAdmin});
     } catch (error) {
         next(error);
