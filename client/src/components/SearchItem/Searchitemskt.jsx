@@ -1,5 +1,5 @@
 import React from 'react'
-import './SearchItemsktcss.css'
+import './Searchitemsktcss.css'
 const Searchitemskt = () => {
   return (
     <div className="searchItemskt">
