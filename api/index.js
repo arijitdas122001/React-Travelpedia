@@ -37,3 +37,4 @@ app.use((err,req,res,next)=>{
     stack: err.stack,
   });
 });
+export default app;
