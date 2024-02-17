@@ -77,7 +77,7 @@ const Hotels = () => {
       <Button children="Search"/>
         </div>
         <div className="hotelsLists">
-          {loading?<>{Array(5).map((i)=>(<Searchitemskt key={i}/>))}</>:<>
+          {loading?<>{Array.from(Array(5),(i)=><Searchitemskt key={i}/>)}</>:<>
           {data.map((ele,i)=>(
             loading?<Searchitemskt key={i}/>:
             <SearchItem item={ele} key={i}/>

@@ -8,7 +8,7 @@ const Features = () => {
    return (
     <div>
      <div className="featured">
-      {loading?<>{Array(3).map((i)=>(<Featureskt key={i}/>))}</>:
+      {loading?<>{Array.from(Array(3),(i)=><Featureskt key={i}/>)}</>:
       <>
        <div className="featuredItem">
        <img 
@@ -21,7 +21,6 @@ const Features = () => {
           <h2>{data[2]} properties</h2>
         </div>
       </div>
-      
       <div className="featuredItem">
         <img
           src="https://www.inditales.com/wp-content/uploads/2020/09/puri-jagannath-temple.jpg"

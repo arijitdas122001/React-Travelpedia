@@ -7,7 +7,7 @@ const HotelNames = () => {
   const {data,loading,err}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/allhotels?featured=true&limit=4`)
   return (
     <div className="fp">
-    {loading?<>{Array(3).map((i)=>(<HotelNskt key={i}/>))}</>:
+    {loading?<>{Array.from(Array(3),(i)=><HotelNskt key={i}/>)}</>:
      <>
       {data.map((ele,i)=>(
       <div className="fpItem" key={i}>

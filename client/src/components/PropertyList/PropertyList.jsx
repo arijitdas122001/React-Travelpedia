@@ -6,7 +6,7 @@ const PropertyList = () => {
   const {data,loading,err}=useFetch(`${import.meta.env.VITE_PORT_NO}/hotels/getHotelCatagory?cat=hotel,Apartments`)
   return (
     <div className="pList">
-      {loading?<>{Array(5).map((i)=>(<Propertylistskt key={i}/>))}</>:
+      {loading?<>{Array.from(Array(5),(i)=><Propertylistskt key={i}/>)}</>:
       <>
     <div className="pListItem">
       <img
