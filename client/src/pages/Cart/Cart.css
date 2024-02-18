@@ -14,6 +14,10 @@
 .user-details{
     border: 1px solid rgb(190, 190, 190);
     border-radius: 4px;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
 }
 .user-details>h3{
     margin-left: 50px;
@@ -63,4 +67,17 @@
     display: flex;
     justify-content: space-between;
     border-radius: 5px;
+}
+.adduser{
+    background-color: pink;
+    padding: 10px 10px;
+    border-radius: 32px;
+    cursor: pointer;
+}
+.addform{
+    padding: 5px 5px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }

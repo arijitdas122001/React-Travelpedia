@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Cart.css";
 import { Button, Header, Navbar } from "../../components/index.js";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
 const Cart = () => {
   const location = useLocation();
   const username = JSON.parse(localStorage.getItem("user"));
@@ -12,8 +14,18 @@ const Cart = () => {
   const totalFee = discoutPrice + 200;
   const { data, loading, err } = useFetch(
     `${import.meta.env.VITE_PORT_NO}/hotels/getHotel/${id}`
-  );
-  console.log(roomCount);
+    );
+    const [count,setcount]=useState(0);
+    const [name,setName]=useState("");
+    const [age,setAge]=useState("");
+    const [GuestDetails,setGuestDetails]=useState([{name:name,age:age}]);
+    const handelchange=(value,q)=>{
+      q=="name"?setName(value):setAge(value);
+    }
+  const handelform=()=>{
+    setGuestDetails([...GuestDetails,{name:name,age:age}])
+  }
+  console.log(GuestDetails);
   return (  
     <div>
       <Navbar />
@@ -56,9 +68,15 @@ const Cart = () => {
             </div>
             <div className="user-details">
               <h3>Guest Details</h3>
-              <div className="details">
-                <input type="text" placeholder="Enter Your Name" />
-                <input type="text" placeholder="Enter Your Age" />
+              {GuestDetails.map((ele,i)=>(
+                  <div className="details">
+                  <input type="text" placeholder={ele.name==""?"Enter Your Name":ele.name} onChange={(e)=>handelchange(e.target.value,"name")}/>
+                  <input type="text" placeholder={ele.age==""?"Enter Your age":ele.age} onChange={(e)=>handelchange(e.target.value,"age")} />
+                </div>
+              ))}
+              <div className="adduser" onClick={handelform}>
+              Add Guest
+              <FontAwesomeIcon icon={faAdd}/>
               </div>
             </div>
             <Button>Pay Now</Button>

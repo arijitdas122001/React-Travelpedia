@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import cors from 'cors'
 const app=express();
 dotenv.config();
-app.use(cors({origin:"https://react-travelpedia.vercel.app",credentials:true}));
+app.use(cors({origin:"http://localhost:5173",credentials:true}));
 const dbConntect=async()=>{
     try {
         await mongoose.connect(process.env.MONGO_URL);
