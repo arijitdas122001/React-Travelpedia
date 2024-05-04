@@ -81,3 +81,21 @@
     color: white;
     cursor: pointer;
 }
+.botbutton{
+    display: flex;
+    gap: 20px;
+}
+.btncart{
+        padding: 11px 16px;
+        background-color:black;
+        border-radius: 4px;
+        color: white;
+        margin: 10px 10px;
+        outline: none;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+}
+.btncart:hover{
+    background-color:rgb(194, 66, 87);
+}

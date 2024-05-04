@@ -3,8 +3,8 @@ import "./Cart.css";
 import { Button, Header, Navbar } from "../../components/index.js";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import img from "../../..//public/travel.png"
+import axios from "axios";
 const Cart = () => {
   const location = useLocation();
   const username = JSON.parse(localStorage.getItem("user"));
@@ -18,19 +18,65 @@ const Cart = () => {
     const [count,setcount]=useState(0);
     const [name,setName]=useState("");
     const [age,setAge]=useState("");
-    const [GuestDetails,setGuestDetails]=useState([{name:name,age:age}]);
+    const [GuestDetails,setGuestDetails]=useState([{name,age}]);
     const handelchange=(value,q)=>{
       q=="name"?setName(value):setAge(value);
     }
-  const handelform=()=>{
-    setGuestDetails([...GuestDetails,{name:name,age:age}])
+  const handelform=(op)=>{
+    if(op==="add"){
+      setGuestDetails([...GuestDetails,{name,age}])
+    }else{
+      GuestDetails.pop();
+      setGuestDetails([...GuestDetails]);
+    }
   }
-  console.log(GuestDetails);
+  // console.log(GuestDetails);
+  const handelPayment=async()=>{
+    const response=await axios.post(`${import.meta.env.VITE_PORT_NO}/payment/order`,{
+      "amount": totalFee,
+      "currency": "INR",
+    });
+    // console.log(response.data);
+    var options = {
+      "key":import.meta.env.RAZORPAY_KEY_ID , // Enter the Key ID generated from the Dashboard
+      "amount": totalFee*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "TravelPedia",
+      "description": "Test Transaction",
+      "image":img,
+      "order_id":response.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response){
+        alert("Payment Sucessfull");
+    },
+      "prefill": {
+          "name": username,
+          "email": email,
+          "contact": "9000090000"
+      },
+      "notes": {
+          "address": "TravelPedia Corporate Office"
+      },
+      "theme": {
+          "color": "#3399cc"
+      }
+  };
+  var rzp1 = new Razorpay(options);
+  rzp1.on('payment.failed', function (response){
+          alert(response.error.code);
+          alert(response.error.description);
+          alert(response.error.source);
+          alert(response.error.step);
+          alert(response.error.reason);
+          alert(response.error.metadata.order_id);
+          alert(response.error.metadata.payment_id);
+  });
+  rzp1.open();
+  }
   return (  
     <div>
       <Navbar />
       <Header type="list" />
-      <div className="cart">
+      {!username?<h1>Please Log in First</h1>:<div className="cart">
         <div className="cartcont">
           <div className="cart-left">
             <h1>Review your Booking</h1>
@@ -70,16 +116,20 @@ const Cart = () => {
               <h3>Guest Details</h3>
               {GuestDetails.map((ele,i)=>(
                   <div className="details">
-                  <input type="text" placeholder={ele.name==""?"Enter Your Name":ele.name} onChange={(e)=>handelchange(e.target.value,"name")}/>
-                  <input type="text" placeholder={ele.age==""?"Enter Your age":ele.age} onChange={(e)=>handelchange(e.target.value,"age")} />
+                  <input type="text"  placeholder={ele.name==""?username:ele.name} onChange={(e)=>handelchange(e.target.value,"name")}/>
+                  <input type="email"  placeholder={ele.age==""?email:ele.age} onChange={(e)=>handelchange(e.target.value,"age")} />
                 </div>
               ))}
-              <div className="adduser" onClick={handelform}>
+              <div className="botbutton">
+              <div className="adduser" onClick={()=>handelform("add")}>
               Add Guest
-              <FontAwesomeIcon icon={faAdd}/>
+              </div>
+              <div className="adduser" onClick={()=>handelform("remove")}>
+              Remove Guest
+              </div>
               </div>
             </div>
-            <Button>Pay Now</Button>
+            {GuestDetails.length===0?<h4>Please Add one or more Traveller</h4>:<button className="btncart" onClick={handelPayment}>Pay Now</button>}
           </div>
           <div className="cart-right">
             <h2>Price Breakup</h2>
@@ -109,6 +159,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+     }
     </div>
   );
 };

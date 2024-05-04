@@ -1,12 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
-import { auth,Hotels, user,Rooms } from "./routes/allroutes.js";
+import { auth,Hotels, user,Rooms,payments } from "./routes/allroutes.js";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from 'cors'
 const app=express();
 dotenv.config();
-app.use(cors({origin:"https://react-travelpedia.vercel.app",credentials:true}));
+app.use(cors({origin:" http://localhost:5173",credentials:true}));
 const dbConntect=async()=>{
     try {
         await mongoose.connect(process.env.MONGO_URL);
@@ -28,6 +28,7 @@ app.use('/api/auth',auth);
 app.use('/api/hotels',Hotels);
 app.use('/api/user',user);
 app.use('/api/rooms',Rooms);
+app.use('/api/payment',payments);
 
 // err MiddleWire
 app.use((err,req,res,next)=>{
